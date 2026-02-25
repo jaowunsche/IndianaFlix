@@ -4,7 +4,7 @@ var DB = {
   videos: [
     { id: 1, title: "Telefone Distante - Trailer", year: 2024, rating: "8.7", youtube: "EA6FguG3x_Y" },
     { id: 2, title: "Distintivo Sangrento", year: 2024, rating: "7.9", youtube: "zqX0gP1CfgM" },
-    { id: 3, title: "Telefone Distante", year: 2024, rating: "8.2", youtube: "1UffwrKBDXs&t" }
+    { id: 3, title: "Telefone Distante", year: 2024, rating: "8.2", youtube: "1UffwrKBDXs" }
   ]
 };
 
