@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IndianaFlix — Entrar</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="auth.css"/>
+</head>
+<body>
+
+<nav class="navbar">
+  <a class="navbar__logo" href="index.html">IndianaFlix</a>
+  <ul class="navbar__links">
+    <li><a href="index.html">Início</a></li>
+    <li><a href="filmes.html">Catálogo</a></li>
+  </ul>
+  <div class="navbar__actions"></div>
+</nav>
+
+<main class="auth-page">
+  <div class="auth-visual">
+    <span class="auth-visual__watermark">INDIANA</span>
+    <p class="auth-visual__logo">IndianaFlix</p>
+    <p class="auth-visual__tagline">Sua plataforma de streaming <strong>independente</strong>. Filmes e vídeos que contam histórias que importam.</p>
+    <div class="auth-visual__cards">
+      <div class="auth-mini-card auth-mini-card--highlight">
+        <span class="auth-mini-card__emoji">🎬</span>
+        <span class="auth-mini-card__label">Filmes</span>
+      </div>
+      <div class="auth-mini-card">
+        <span class="auth-mini-card__emoji">📺</span>
+        <span class="auth-mini-card__label">Séries</span>
+      </div>
+      <div class="auth-mini-card">
+        <span class="auth-mini-card__emoji">🎥</span>
+        <span class="auth-mini-card__label">Vlogs</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="auth-form-side">
+    <div class="auth-box">
+      <h1 class="auth-box__title">Sua Conta</h1>
+      <p class="auth-box__subtitle">Entre ou crie uma conta para continuar assistindo.</p>
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tab-login">Entrar</button>
+        <button class="auth-tab" id="tab-register">Cadastrar</button>
+      </div>
+      <div class="auth-panel active" id="panel-login">
+        <form id="form-login" novalidate>
+          <div class="form-group">
+            <label for="login-email">E-mail</label>
+            <input type="email" id="login-email" placeholder="seu@email.com" autocomplete="email"/>
+          </div>
+          <div class="form-group">
+            <label for="login-password">Senha</label>
+            <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password"/>
+          </div>
+          <button type="submit" class="btn-submit">Entrar</button>
+          <div class="form-alert" id="alert-login"></div>
+        </form>
+      </div>
+      <div class="auth-panel" id="panel-register">
+        <form id="form-register" novalidate>
+          <div class="form-group">
+            <label for="reg-name">Nome Completo</label>
+            <input type="text" id="reg-name" placeholder="Seu nome" autocomplete="name"/>
+          </div>
+          <div class="form-group">
+            <label for="reg-email">E-mail</label>
+            <input type="email" id="reg-email" placeholder="seu@email.com" autocomplete="email"/>
+          </div>
+          <div class="form-group">
+            <label for="reg-password">Senha</label>
+            <input type="password" id="reg-password" placeholder="Mínimo 6 caracteres" autocomplete="new-password"/>
+            <span class="form-help">Use pelo menos 6 caracteres.</span>
+          </div>
+          <div class="form-group">
+            <label for="reg-password2">Confirmar Senha</label>
+            <input type="password" id="reg-password2" placeholder="Repita a senha" autocomplete="new-password"/>
+          </div>
+          <button type="submit" class="btn-submit">Criar Conta</button>
+          <div class="form-alert" id="alert-register"></div>
+        </form>
+      </div>
+      <a href="index.html" class="auth-back">← Voltar para o início</a>
+    </div>
+  </div>
+</main>
+
+<script src="auth.js"></script>
+
+</body>
+</html>

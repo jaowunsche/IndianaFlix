@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IndianaFlix</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="home.css"/>
+</head>
+<body>
+
+<nav class="navbar">
+  <a class="navbar__logo" href="index.html">IndianaFlix</a>
+  <ul class="navbar__links">
+    <li><a href="index.html" class="active">Início</a></li>
+    <li><a href="filmes.html">Catálogo</a></li>
+  </ul>
+  <div class="navbar__actions" id="navbar-actions">
+    <a href="login.html" class="btn btn--ghost">Entrar</a>
+    <a href="login.html?tab=register" class="btn btn--primary">Começar</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero__watermark">INDIANA</div>
+  <div class="hero__content">
+    <span class="hero__eyebrow">Plataforma Original</span>
+    <h1 class="hero__title">Cinema que <span>Importa</span></h1>
+    <p class="hero__desc">Conteúdo independente selecionado. Filmes e vídeos que contam histórias que precisam ser contadas.</p>
+    <div class="hero__actions">
+      <a href="login.html?tab=register" class="btn btn--primary btn--lg">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        Assinar Agora
+      </a>
+      <a href="filmes.html" class="btn btn--ghost btn--lg">Explorar</a>
+    </div>
+  </div>
+  <div class="hero__divider"></div>
+</section>
+
+<section class="section reveal">
+  <div class="section__header">
+    <h2 class="section__title">Em <span>Destaque</span></h2>
+    <a href="filmes.html" class="section__link">Ver Catálogo →</a>
+  </div>
+  <div class="card-grid" id="grid-videos"></div>
+</section>
+
+<div class="plans-section reveal">
+  <div class="section__header">
+    <h2 class="section__title">Planos & <span>Assinaturas</span></h2>
+  </div>
+  <div class="plans-grid">
+    <div class="plan-card">
+      <p class="plan-card__name">Básico</p>
+      <div class="plan-card__price"><span class="plan-card__currency">R$</span><span class="plan-card__amount">19</span><span class="plan-card__period">/mês</span></div>
+      <ul class="plan-card__features">
+        <li>1 tela simultânea</li>
+        <li>Qualidade HD</li>
+        <li class="off">Conteúdo exclusivo</li>
+        <li class="off">Downloads offline</li>
+      </ul>
+      <button class="plan-card__btn" onclick="location.href='login.html?tab=register'">Assinar</button>
+    </div>
+    <div class="plan-card plan-card--featured">
+      <span class="plan-card__popular">✦ Mais Popular</span>
+      <p class="plan-card__name">Standard</p>
+      <div class="plan-card__price"><span class="plan-card__currency">R$</span><span class="plan-card__amount">34</span><span class="plan-card__period">/mês</span></div>
+      <ul class="plan-card__features">
+        <li>2 telas simultâneas</li>
+        <li>Qualidade Full HD</li>
+        <li>Conteúdo exclusivo</li>
+        <li class="off">Downloads offline</li>
+      </ul>
+      <button class="plan-card__btn" onclick="location.href='login.html?tab=register'">Assinar</button>
+    </div>
+    <div class="plan-card">
+      <p class="plan-card__name">Premium</p>
+      <div class="plan-card__price"><span class="plan-card__currency">R$</span><span class="plan-card__amount">55</span><span class="plan-card__period">/mês</span></div>
+      <ul class="plan-card__features">
+        <li>4 telas simultâneas</li>
+        <li>4K Ultra HD</li>
+        <li>Conteúdo exclusivo</li>
+        <li>Downloads offline</li>
+      </ul>
+      <button class="plan-card__btn" onclick="location.href='login.html?tab=register'">Assinar</button>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <span class="footer__logo">IndianaFlix</span>
+  <ul class="footer__links">
+    <li><a href="#">Sobre</a></li>
+    <li><a href="filmes.html">Catálogo</a></li>
+    <li><a href="login.html">Entrar</a></li>
+  </ul>
+  <p class="footer__copy">© 2025 IndianaFlix. Todos os direitos reservados.</p>
+</footer>
+
+<script src="main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    renderCards('grid-videos', DB.videos);
+    var session = JSON.parse(localStorage.getItem('ifx_session') || 'null');
+    if (session) {
+      document.getElementById('navbar-actions').innerHTML =
+        '<span style="font-size:0.78rem;color:var(--muted);letter-spacing:0.5px;">Olá, <strong style="color:var(--text)">' + session.name.split(' ')[0] + '</strong></span>' +
+        '<button class="btn btn--ghost" onclick="localStorage.removeItem(\'ifx_session\');location.reload()">Sair</button>';
+    }
+  });
+</script>
+
+</body>
+</html>

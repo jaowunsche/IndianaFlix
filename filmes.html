@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IndianaFlix — Catálogo</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="catalog.css"/>
+</head>
+<body>
+
+<nav class="navbar">
+  <a class="navbar__logo" href="index.html">IndianaFlix</a>
+  <ul class="navbar__links">
+    <li><a href="index.html">Início</a></li>
+    <li><a href="filmes.html" class="active">Catálogo</a></li>
+  </ul>
+  <div class="navbar__actions" id="navbar-actions">
+    <a href="login.html" class="btn btn--ghost">Entrar</a>
+    <a href="login.html?tab=register" class="btn btn--primary">Começar</a>
+  </div>
+</nav>
+
+<header class="catalog-header">
+  <h1 class="catalog-header__title">Catálogo <span>Completo</span></h1>
+  <p class="catalog-header__sub">Todos os vídeos disponíveis na plataforma.</p>
+</header>
+
+<div class="catalog-controls">
+  <div class="search-bar">
+    <svg class="search-bar__icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" id="search-input" placeholder="Buscar título…"/>
+  </div>
+  <select class="filter-select" id="filter-sort">
+    <option value="default">Ordenar</option>
+    <option value="rating">Melhor avaliados</option>
+    <option value="alpha">A–Z</option>
+  </select>
+</div>
+
+<div class="catalog-content">
+  <p class="catalog-count" id="catalog-count"></p>
+  <div class="catalog-grid" id="catalog-grid"></div>
+</div>
+
+<footer class="footer">
+  <span class="footer__logo">IndianaFlix</span>
+  <ul class="footer__links">
+    <li><a href="index.html">Início</a></li>
+    <li><a href="login.html">Entrar</a></li>
+  </ul>
+  <p class="footer__copy">© 2025 IndianaFlix. Todos os direitos reservados.</p>
+</footer>
+
+<script src="main.js"></script>
+<script>
+  var searchTimer;
+
+  function applyFilters() {
+    var query = document.getElementById('search-input').value.toLowerCase().trim();
+    var sort  = document.getElementById('filter-sort').value;
+    var filtered = DB.videos.filter(function(i) {
+      return !query || i.title.toLowerCase().indexOf(query) !== -1;
+    });
+    if (sort === 'rating') filtered.sort(function(a,b) { return parseFloat(b.rating) - parseFloat(a.rating); });
+    if (sort === 'alpha')  filtered.sort(function(a,b) { return a.title.localeCompare(b.title); });
+    renderCards('catalog-grid', filtered);
+    var n = filtered.length;
+    document.getElementById('catalog-count').innerHTML =
+      '<strong>' + n + '</strong> vídeo' + (n !== 1 ? 's' : '') + ' encontrado' + (n !== 1 ? 's' : '');
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    applyFilters();
+    document.getElementById('search-input').addEventListener('input', function() {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(applyFilters, 280);
+    });
+    document.getElementById('filter-sort').addEventListener('change', applyFilters);
+    var session = JSON.parse(localStorage.getItem('ifx_session') || 'null');
+    if (session) {
+      document.getElementById('navbar-actions').innerHTML =
+        '<span style="font-size:0.78rem;color:var(--muted);">Olá, <strong style="color:var(--text)">' + session.name.split(' ')[0] + '</strong></span>' +
+        '<button class="btn btn--ghost" onclick="localStorage.removeItem(\'ifx_session\');location.reload()">Sair</button>';
+    }
+  });
+</script>
+
+</body>
+</html>
